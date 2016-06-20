@@ -13,6 +13,10 @@ From your top-level directory - the one with `elm-package.json` in - call:
 ```
 $ elm package install krisajenkins/formatting
 ```
+## Documentation
+
+[See the Elm package for full usage docs](http://package.elm-lang.org/packages/krisajenkins/formatting/latest/Formatting).
+
 
 ## Usage
 
@@ -60,10 +64,6 @@ But it is:
 ```
 
 Woo - it's like `printf`, but it can't blow up at runtime.
-
-## Documentation
-
-[See the Elm package for full usage docs](http://package.elm-lang.org/packages/krisajenkins/formatting/latest/Formatting).
 
 
 ## Examples
