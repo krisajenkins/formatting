@@ -7,11 +7,13 @@ module Formatting
         , float
         , (<>)
         , print
+        , html
         )
 
-{-| A type-safe string formatting library. Fulfils the need for
+{-| A type-safe string formatting library. It fulfils the need for
 string-interpolation or a `printf` function, without sacrificing Elm's
-runtime guarantees.
+runtime guarantees or requiring any language-level changes. It also
+composes well, to make building up complex formatters easy.
 
 Example:
 
@@ -24,8 +26,11 @@ Example:
 
     --> "Hello Kris!"
 
-@docs Format, (<>), print, s, string, int, float
+@docs Format, (<>), print, html, s, string, int, float
 -}
+
+import Html exposing (Html)
+
 
 ------------------------------------------------------------
 -- The core.
@@ -78,6 +83,14 @@ For example:
 print : Format String a -> a
 print (Format format) =
     format identity
+
+
+{-| Convenience function. Like `print`, but returns an `Html.text`
+node as its final result, instead of a `String`.
+-}
+html : Format (Html msg) a -> a
+html (Format format) =
+    format Html.text
 
 
 
