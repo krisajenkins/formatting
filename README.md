@@ -16,12 +16,14 @@ $ elm package install krisajenkins/formatting
 
 ## Usage
 
-We want to display something like `"Hello <name>!"`. That consists of
-a boilerplate string, `"Hello "`, a "hole" for a `String`,
-and another boilerplate string, `"!"`.
+We want to display something like `"Hello <name>!"`. It consist of:
+
+- A boilerplate string, `"Hello "`
+- A "hole" for a `String`
+- Another boilerplate string, `"!"`
 
 To create that, we'll build up a formatter using `s` for boilerplate
-strings, and `string` for the hole:
+strings, `string` for the hole, and `<>` to join them together:
 
 ``` elm
 import Formatting exposing (..)
@@ -65,7 +67,9 @@ Woo - it's like `printf`, but it can't blow up at runtime.
 
 ## Status
 
-In active development. API subject to change.
+In active development. The hard part is done, but we need more utility functions.
+
+API subject to change.
 
 ## Building & Testing
 
