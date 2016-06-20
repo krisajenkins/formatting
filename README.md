@@ -1,6 +1,6 @@
 # Elm Extensions
 
-[![Build Status](https://travis-ci.org/krisajenkins/formatting.svg?branch=travis)](https://travis-ci.org/krisajenkins/formatting)
+[![Build Status](https://travis-ci.org/krisajenkins/formatting.svg?branch=master)](https://travis-ci.org/krisajenkins/formatting)
 
 A type-safe string formatting library. Fulfils the need for
 string-interpolation or a `printf` function, without sacrificing Elm's
