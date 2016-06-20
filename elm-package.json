@@ -1,0 +1,22 @@
+{
+    "version": "1.0.0",
+    "summary": "A type-safe string formatting library. printf: elm style.",
+    "repository": "https://github.com/krisajenkins/formatting.git",
+    "license": "MIT",
+    "source-directories": [
+        "src",
+        "test"
+    ],
+    "exposed-modules": [
+        "Formatting",
+		"Test"
+    ],
+    "dependencies": {
+        "elm-community/elm-check": "1.0.0 <= v < 2.0.0",
+        "elm-community/elm-test": "1.1.0 <= v < 2.0.0",
+        "elm-community/shrink": "1.0.1 <= v < 2.0.0",
+        "elm-lang/core": "4.0.0 <= v < 5.0.0",
+        "elm-lang/html": "1.0.0 <= v < 2.0.0"
+    },
+    "elm-version": "0.17.0 <= v < 0.18.0"
+}
