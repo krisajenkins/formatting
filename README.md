@@ -85,9 +85,9 @@ Filling in all those holes gets messy:
 "translate(" ++ toString x ++ "px, " ++ toString y ++ "px) rotate3d(0, 0, 1, " ++ toString r "deg)"
 ```
 
-This is exactly the mess that make me want a `printf` function. Now
-with `Formatting` we easily break it down into more readable,
-composable pieces:
+This is exactly the mess that makes me want a `printf` function.
+`Formatting` we can easily break it down into more readable,
+easily-composable pieces:
 
 ``` elm
 transform =
@@ -114,11 +114,13 @@ transform =
 
 A. I don't believe you can, in a type-safe way, without core language
 changes. You'd need to parse the formatting string at compile time to
-generate a function with the right type.
+generate a function with the right type. And even when you've done all
+that work - or waited for Even to do it - you end up with something
+that's hard to compose and hard to extend.
 
 This library gives you the same utility as `printf`, but it doesn't
-need any changes to the language, and it's entirely extensible - you
-can make your own formatters on-the-fly.
+need any changes to the language, it's freely composable, and it's
+entirely extensible - you can make your own formatters on-the-fly.
 
 ## Building & Testing
 
@@ -130,7 +132,8 @@ make
 
 ## Status
 
-In active development. The hard part is done, but we need more utility functions.
+In active development. The hard part is done, but we need more utility
+functions like string width and alignment helpers.
 
 API subject to change.
 
