@@ -85,8 +85,8 @@ Filling in all those holes gets messy:
 "translate(" ++ toString x ++ "px, " ++ toString y ++ "px) rotate3d(0, 0, 1, " ++ toString r "deg)"
 ```
 
-This is exactly the mess that makes me want a `printf` function.
-With `Formatting` we can easily break it down into more readable,
+This is exactly the mess that makes me want a `printf` function.  With
+`Formatting` we can break it down into more readable,
 easily-composable pieces:
 
 ``` elm
