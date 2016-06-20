@@ -16,7 +16,7 @@ $ elm package install krisajenkins/formatting
 ```
 ## Documentation
 
-[See the Elm package for full usage docs](http://package.elm-lang.org/packages/krisajenkins/formatting/latest/Formatting).
+[See the Elm package for full documentation](http://package.elm-lang.org/packages/krisajenkins/formatting/latest/Formatting).
 
 
 ## Usage
