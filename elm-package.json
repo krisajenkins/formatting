@@ -1,5 +1,5 @@
 {
-    "version": "1.0.0",
+    "version": "2.0.0",
     "summary": "A type-safe string formatting library. printf: elm style.",
     "repository": "https://github.com/krisajenkins/formatting.git",
     "license": "MIT",
