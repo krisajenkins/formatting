@@ -86,7 +86,7 @@ Filling in all those holes gets messy:
 ```
 
 This is exactly the mess that makes me want a `printf` function.
-`Formatting` we can easily break it down into more readable,
+With `Formatting` we can easily break it down into more readable,
 easily-composable pieces:
 
 ``` elm
