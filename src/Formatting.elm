@@ -13,6 +13,17 @@ module Formatting
 string-interpolation or a `printf` function, without sacrificing Elm's
 runtime guarantees.
 
+Example:
+
+    import Formatting exposing (..)
+
+    greeting =
+        s "Hello " <> string <> s "!"
+
+    print greeting "Kris"
+
+    --> "Hello Kris!"
+
 @docs Format, (<>), print, s, string, int, float
 -}
 
