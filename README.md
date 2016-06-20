@@ -68,7 +68,7 @@ If you want to compose CSS3 transforms, it's a bit of a pain of string interpola
 
 
 ``` css
-translate(50px, 100px) rotate3d(0, 0, 1, 60deg)"
+translate(50px, 100px) rotate3d(0, 0, 1, 60deg)
 ```
 
 Filling in all those holes gets messy:
@@ -88,7 +88,7 @@ transform =
         px =
             int <> s "px"
 
-        def =
+        deg =
             float <> s "deg"
 
         translate =
