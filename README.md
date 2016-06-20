@@ -61,8 +61,12 @@ But it is:
 
 Woo - it's like `printf`, but it can't blow up at runtime.
 
+## Documentation
 
-### Bonus Example
+[See the Elm package for full usage docs](http://package.elm-lang.org/packages/krisajenkins/formatting/latest/Formatting).
+
+
+## Examples
 
 If you want to compose CSS3 transforms, it's a bit of a pain of string
 interpolation. For example, to translate and rotate a div, we'd need
@@ -103,9 +107,17 @@ transform =
         translate <> s " " <> rotate
 ```
 
-## Documentation
+## FAQ
 
-[See the Elm package for full usage docs](http://package.elm-lang.org/packages/krisajenkins/formatting/latest/Formatting).
+### Q. Can't I do something like `Hello %s!`?
+
+A. I don't believe you can, in a type-safe way, without core language
+changes. You'd need to parse the formatting string at compile time to
+generate a function with the right type.
+
+This library gives you the same utility as `printf`, but it doesn't
+need any changes to the language, and it's entirely extensible - you
+can make your own formatters on-the-fly.
 
 ## Building & Testing
 
