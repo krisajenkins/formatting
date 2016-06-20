@@ -110,13 +110,16 @@ transform =
 
 ## FAQ
 
-### Q. Can't I do something like `Hello %s!`?
+### Q. Can't I do something like `"Hello %s!"`?
 
 A. I don't believe you can, in a type-safe way, without core language
 changes. You'd need to parse the formatting string at compile time to
-generate a function with the right type. And even when you've done all
-that work - or waited for Even to do it - you end up with something
-that's hard to compose and hard to extend.
+generate a function with the right type. That either needs built-in
+language support, or a macro system.
+
+And even when you've done all that work - or waited for Evan to do
+it - you end up with something that's hard to compose and hard to
+extend.
 
 This library gives you the same utility as `printf`, but it doesn't
 need any changes to the language, it's freely composable, and it's
