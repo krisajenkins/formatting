@@ -1,4 +1,4 @@
-# Elm Extensions
+# Formatting
 
 [![Build Status](https://travis-ci.org/krisajenkins/formatting.svg?branch=master)](https://travis-ci.org/krisajenkins/formatting)
 
