@@ -8,8 +8,7 @@
         "test"
     ],
     "exposed-modules": [
-        "Formatting",
-		"Test"
+        "Formatting"
     ],
     "dependencies": {
         "elm-community/elm-check": "1.0.0 <= v < 2.0.0",
