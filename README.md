@@ -65,12 +65,6 @@ Woo - it's like `printf`, but it can't blow up at runtime.
 
 [See the Elm package for full usage docs](http://package.elm-lang.org/packages/krisajenkins/formatting/latest/Formatting).
 
-## Status
-
-In active development. The hard part is done, but we need more utility functions.
-
-API subject to change.
-
 ## Building & Testing
 
 ```
@@ -78,6 +72,21 @@ make
 ```
 
 ...will run the whole build and test suite.
+
+## Status
+
+In active development. The hard part is done, but we need more utility functions.
+
+API subject to change.
+
+## Credits
+
+This package is a port of [Chris Done's Formatting][formatting] library for
+Haskell. When I saw Evan & Noah's [url-parser][url-parser] library, I
+realised it could be ported across.
+
+[formatting]: http://chrisdone.com/posts/formatting
+[url-parser]: http://package.elm-lang.org/packages/evancz/url-parser/latest
 
 ## License
 
