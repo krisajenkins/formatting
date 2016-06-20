@@ -64,7 +64,9 @@ Woo - it's like `printf`, but it can't blow up at runtime.
 
 ### Bonus Example
 
-If you want to compose CSS3 transforms, it's a bit of a pain of string interpolation. For example, to translate and rotate a div, we'd need something like:
+If you want to compose CSS3 transforms, it's a bit of a pain of string
+interpolation. For example, to translate and rotate a div, we'd need
+something like:
 
 
 ``` css
