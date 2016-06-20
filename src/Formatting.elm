@@ -88,7 +88,7 @@ print (Format format) =
 
 {-| A boilerplate string.
 -}
-s : String -> Format a a
+s : String -> Format r r
 s str =
     Format (\c -> c str)
 
