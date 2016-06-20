@@ -70,13 +70,35 @@ infixr 8 <>
 
 {-| Turn your formatter into a function that's just waiting for its arguments.
 
-For example:
+Given this format:
 
-    order =
-        let
-            format = s "FREE: " <> int <> s " x " <> string  <> s "!"
-        in
-            print format 2 "Ice Cream"
+
+    orderFormat =
+        s "FREE: " <> int <> s " x " <> string  <> s "!"
+
+
+...we can either use it immediately:
+
+
+    order : String
+    order = print orderFormat 2 "Ice Cream"
+
+    --> "FREE: 2 x Ice Cream!"
+
+
+...or turn it into an ordinary function to be used later:
+
+
+    orderFormatter : Int -> String -> String
+    orderFormatter =
+        print orderFormat
+
+
+    ...elsewhere...
+
+
+    order : String
+    order = orderFormatter 2 "Ice Cream"
 
     --> "FREE: 2 x Ice Cream!"
 -}
