@@ -2,9 +2,10 @@
 
 [![Build Status](https://travis-ci.org/krisajenkins/formatting.svg?branch=master)](https://travis-ci.org/krisajenkins/formatting)
 
-A type-safe string formatting library. Fulfils the need for
+A type-safe string formatting library. It fulfils the need for
 string-interpolation or a `printf` function, without sacrificing Elm's
-runtime guarantees.
+runtime guarantees or requiring any language-level changes. It also
+composes well, to make building up complex formatters easy.
 
 ## Installation
 
