@@ -120,7 +120,7 @@ int =
     Format (\c -> (\n -> c (toString n)))
 
 
-{-| A placeholder for an `Float` argument.
+{-| A placeholder for a `Float` argument.
 -}
 float : Format r (Float -> r)
 float =
