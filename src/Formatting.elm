@@ -11,6 +11,9 @@ module Formatting
         , int
         , float
         , any
+        , pad
+        , padLeft
+        , padRight
         )
 
 {-| A type-safe string formatting library. It fulfils the need for
@@ -29,10 +32,11 @@ Example:
 
     --> "Hello Kris!"
 
-@docs Format, (<>), map, premap, print, html, s, string, int, float, any
+@docs Format, (<>), map, premap, print, html, s, string, int, float, any, pad, padLeft, padRight
 -}
 
 import Html exposing (Html)
+import String
 
 
 ------------------------------------------------------------
@@ -203,3 +207,51 @@ int =
 float : Format r (Float -> r)
 float =
     any
+
+
+
+------------------------------------------------------------
+-- Convenience functions.
+------------------------------------------------------------
+
+
+{-| `String.pad` lifted into the world of Formatters.
+
+For example:
+
+    print (pad 10 '_' string) "KRIS"
+
+    --> "___KRIS___"
+
+-}
+pad : Int -> Char -> Format r a -> Format r a
+pad n char =
+    map (String.pad n char)
+
+
+{-| `String.padLeft` lifted into the world of Formatters.
+
+For example:
+
+    print (padLeft 10 '_' float) 1.72
+
+    --> "______1.72"
+
+-}
+padLeft : Int -> Char -> Format r a -> Format r a
+padLeft n char =
+    map (String.padLeft n char)
+
+
+{-| `String.padRight` lifted into the world of Formatters.
+
+For example:
+
+    print (padRight 10 '_' int) 789
+
+    --> "789_______"
+
+-}
+padRight : Int -> Char -> Format r a -> Format r a
+padRight n char =
+    map (String.padRight n char)
