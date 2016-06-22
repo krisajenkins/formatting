@@ -150,8 +150,12 @@ This package is a port of [Chris Done's Formatting][formatting] library for
 Haskell. When I saw Evan & Noah's [url-parser][url-parser] library, I
 realised it could be ported across.
 
+Also, thanks to [Glen Mailer][glenjamin] for suggesting the function
+name `premap`.
+
 [formatting]: http://chrisdone.com/posts/formatting
 [url-parser]: http://package.elm-lang.org/packages/evancz/url-parser/latest
+[glenjamin]: https://github.com/glenjamin
 
 ## License
 

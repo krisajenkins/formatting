@@ -3,7 +3,7 @@ module Formatting
         ( Format
         , (<>)
         , map
-        , contramap
+        , premap
         , print
         , html
         , s
@@ -29,7 +29,7 @@ Example:
 
     --> "Hello Kris!"
 
-@docs Format, (<>), map, contramap, print, html, s, string, int, float, any
+@docs Format, (<>), map, premap, print, html, s, string, int, float, any
 -}
 
 import Html exposing (Html)
@@ -94,11 +94,12 @@ map f (Format format) =
     Format (\c -> format <| f >> c)
 
 
-{-| Create a new function by applying a function to the input of this formatter.
+{-| Create a new function by applying a function to the input of this
+formatter. The dual of `map`.
 
 For example:
 
-    format = s "Height: " <> contramap .height float
+    format = s "Height: " <> premap .height float
 
 ...produces a formatter that accesses a `.height` record field:
 
@@ -107,8 +108,8 @@ For example:
     --> "Height: 1.72"
 
 -}
-contramap : (a -> b) -> Format r (b -> v) -> Format r (a -> v)
-contramap f (Format format) =
+premap : (a -> b) -> Format r (b -> v) -> Format r (a -> v)
+premap f (Format format) =
     Format (\c -> f >> format c)
 
 
