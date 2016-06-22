@@ -145,6 +145,12 @@ print (Format format) =
 
 {-| Convenience function. Like `print`, but returns an `Html.text`
 node as its final result, instead of a `String`.
+
+Hint: If you're using any formatters where whitespace is sigificant,
+you might well need one of both of these CSS rules:
+
+    font-family: monospace;
+    white-space: pre;
 -}
 html : Format (Html msg) a -> a
 html (Format format) =
