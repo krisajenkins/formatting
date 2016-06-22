@@ -65,7 +65,7 @@ compose (Format f) (Format g) =
 infixr 8 <>
 
 
-{-| Create a new function by applying a function to the results of this formatter.
+{-| Create a new formatter by applying a function to the output of this formatter.
 
 For example:
 
@@ -85,7 +85,7 @@ map f (Format format) =
     Format (\c -> format <| f >> c)
 
 
-{-| Create a new function by applying a function to the input of this
+{-| Create a new formatter by applying a function to the input of this
 formatter. The dual of `map`.
 
 For example:
