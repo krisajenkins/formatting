@@ -1,13 +1,13 @@
 module Formatting
     exposing
         ( Format
+        , (<>)
+        , print
+        , html
         , s
         , string
         , int
         , float
-        , (<>)
-        , print
-        , html
         )
 
 {-| A type-safe string formatting library. It fulfils the need for
