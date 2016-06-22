@@ -3,6 +3,7 @@ module Formatting
         ( Format
         , (<>)
         , map
+        , contramap
         , print
         , html
         , s
@@ -27,7 +28,7 @@ Example:
 
     --> "Hello Kris!"
 
-@docs Format, (<>), map, print, html, s, string, int, float
+@docs Format, (<>), map, contramap, print, html, s, string, int, float
 -}
 
 import Html exposing (Html)
@@ -87,6 +88,24 @@ For example:
 map : (String -> String) -> Format r a -> Format r a
 map f (Format format) =
     Format (\c -> format (f >> c))
+
+
+{-| Create a new function by applying a function to the input of this formatter.
+
+For example:
+
+    format = s "Height: " <> contramap .height float
+
+...produces a formatter that accesses a `.height` record field:
+
+    print format { height: 1.72 }
+
+    --> "Height: 1.72"
+
+-}
+contramap : (a -> b) -> Format r (b -> v) -> Format r (a -> v)
+contramap f (Format format) =
+    Format (\c -> (f >> format c))
 
 
 {-| Turn your formatter into a function that's just waiting for its arguments.

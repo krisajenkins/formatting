@@ -10,6 +10,7 @@ tests =
     ElmTest.suite "State"
         [ basicTests
         , mapTests
+        , contramapTests
         ]
 
 
@@ -41,3 +42,18 @@ mapTests =
         ]
             |> List.map check
             |> ElmTest.suite "map"
+
+
+contramapTests : Test
+contramapTests =
+    let
+        record =
+            { name = "Kris"
+            , height = 1.72
+            }
+    in
+        [ assertEqual "Name: Kris" (print (s "Name: " <> contramap .name string) record)
+        , assertEqual "Height: 1.72" (print (s "Height: " <> contramap .height float) record)
+        ]
+            |> List.map defaultTest
+            |> ElmTest.suite "contramap"
