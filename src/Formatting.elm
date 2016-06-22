@@ -54,16 +54,7 @@ type Format r a
 
 compose : Format b a -> Format c b -> Format c a
 compose (Format f) (Format g) =
-    Format
-        (\c ->
-            f
-                (\strF ->
-                    g
-                        (\strG ->
-                            c <| strF ++ strG
-                        )
-                )
-        )
+    Format (\c -> f <| \strF -> g <| \strG -> c <| strF ++ strG)
 
 
 {-| Compose two formatters together.
@@ -177,7 +168,7 @@ s str =
 -}
 string : Format r (String -> r)
 string =
-    Format (\c -> \str -> c str)
+    Format identity
 
 
 {-| A placeholder for any value that we can call `toString` on.
@@ -191,7 +182,7 @@ signatures.
 -}
 any : Format r (a -> r)
 any =
-    Format (\c -> \v -> c <| toString v)
+    Format (\c -> c << toString)
 
 
 {-| A placeholder for an `Int` argument.
