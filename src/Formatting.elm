@@ -70,6 +70,19 @@ infixr 8 <>
 
 
 {-| Create a new function by applying a function to the results of this formatter.
+
+For example:
+
+    import String exposing (toUpper)
+
+    format = s "Name: " <> map toUpper string
+
+...produces a formatter that uppercases the name:
+
+    print format "Kris"
+
+    --> "Name: KRIS"
+
 -}
 map : (String -> String) -> Format r a -> Format r a
 map f (Format format) =
