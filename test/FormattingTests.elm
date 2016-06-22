@@ -22,6 +22,8 @@ basicTests =
         (print (s "We need " <> int <> s " cats.") 5)
     , assertEqual "Height: 1.72"
         (print (s "Height: " <> float) 1.72)
+    , assertEqual "Person: { name = \"Kris\", height = 1.72 }"
+        (print (s "Person: " <> any) { name = "Kris", height = 1.72 })
     ]
         |> List.map defaultTest
         |> ElmTest.suite "Basics"

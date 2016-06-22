@@ -10,6 +10,7 @@ module Formatting
         , string
         , int
         , float
+        , any
         )
 
 {-| A type-safe string formatting library. It fulfils the need for
@@ -28,7 +29,7 @@ Example:
 
     --> "Hello Kris!"
 
-@docs Format, (<>), map, contramap, print, html, s, string, int, float
+@docs Format, (<>), map, contramap, print, html, s, string, int, float, any
 -}
 
 import Html exposing (Html)
@@ -175,15 +176,29 @@ string =
     Format (\c -> (\str -> c str))
 
 
+{-| A placeholder for any value that we can call `toString` on.
+
+
+Eagle-eyed source readers will notice that we use this to define `int`
+and `float`, since `toString` gives us the right result for both of
+those types.
+The only difference is, those versions have more restrictive type
+signatures.
+-}
+any : Format r (a -> r)
+any =
+    Format (\c -> (\v -> c <| toString v))
+
+
 {-| A placeholder for an `Int` argument.
 -}
 int : Format r (Int -> r)
 int =
-    Format (\c -> (\n -> c (toString n)))
+    any
 
 
 {-| A placeholder for a `Float` argument.
 -}
 float : Format r (Float -> r)
 float =
-    Format (\c -> (\n -> c (toString n)))
+    any
