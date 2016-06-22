@@ -58,7 +58,10 @@ compose (Format f) (Format g) =
         (\c ->
             f
                 (\strF ->
-                    g (\strG -> c (strF ++ strG))
+                    g
+                        (\strG ->
+                            c <| strF ++ strG
+                        )
                 )
         )
 
@@ -88,7 +91,7 @@ For example:
 -}
 map : (String -> String) -> Format r a -> Format r a
 map f (Format format) =
-    Format (\c -> format (f >> c))
+    Format (\c -> format <| f >> c)
 
 
 {-| Create a new function by applying a function to the input of this formatter.
@@ -106,7 +109,7 @@ For example:
 -}
 contramap : (a -> b) -> Format r (b -> v) -> Format r (a -> v)
 contramap f (Format format) =
-    Format (\c -> (f >> format c))
+    Format (\c -> f >> format c)
 
 
 {-| Turn your formatter into a function that's just waiting for its arguments.
@@ -173,7 +176,7 @@ s str =
 -}
 string : Format r (String -> r)
 string =
-    Format (\c -> (\str -> c str))
+    Format (\c -> \str -> c str)
 
 
 {-| A placeholder for any value that we can call `toString` on.
@@ -187,7 +190,7 @@ signatures.
 -}
 any : Format r (a -> r)
 any =
-    Format (\c -> (\v -> c <| toString v))
+    Format (\c -> \v -> c <| toString v)
 
 
 {-| A placeholder for an `Int` argument.
