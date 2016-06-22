@@ -2,6 +2,7 @@ module Formatting
     exposing
         ( Format
         , (<>)
+        , map
         , print
         , html
         , s
@@ -26,7 +27,7 @@ Example:
 
     --> "Hello Kris!"
 
-@docs Format, (<>), print, html, s, string, int, float
+@docs Format, (<>), map, print, html, s, string, int, float
 -}
 
 import Html exposing (Html)
@@ -66,6 +67,13 @@ compose (Format f) (Format g) =
 (<>) =
     compose
 infixr 8 <>
+
+
+{-| Create a new function by applying a function to the results of this formatter.
+-}
+map : (String -> String) -> Format r a -> Format r a
+map f (Format format) =
+    Format (\c -> format (f >> c))
 
 
 {-| Turn your formatter into a function that's just waiting for its arguments.

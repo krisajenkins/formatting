@@ -2,12 +2,14 @@ module FormattingTests exposing (tests)
 
 import ElmTest exposing (..)
 import Formatting exposing (..)
+import String exposing (reverse, toUpper)
 
 
 tests : Test
 tests =
     ElmTest.suite "State"
         [ basicTests
+        , mapTests
         ]
 
 
@@ -19,3 +21,23 @@ basicTests =
     ]
         |> List.map defaultTest
         |> ElmTest.suite "Basics"
+
+
+mapTests : Test
+mapTests =
+    let
+        format =
+            string <> s "!"
+
+        check ( f, expected ) =
+            defaultTest
+                (assertEqual expected
+                    (print (map f format) "Hello")
+                )
+    in
+        [ ( identity, "Hello!" )
+        , ( toUpper, "HELLO!" )
+        , ( reverse, "!olleH" )
+        ]
+            |> List.map check
+            |> ElmTest.suite "map"
