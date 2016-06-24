@@ -151,7 +151,7 @@ print (Format format) =
 node as its final result, instead of a `String`.
 
 Hint: If you're using any formatters where whitespace is sigificant,
-you might well need one of both of these CSS rules:
+you might well need one or both of these CSS rules:
 
     font-family: monospace;
     white-space: pre;
@@ -184,10 +184,11 @@ string =
 {-| A placeholder for any value that we can call `toString` on.
 
 
-Eagle-eyed source readers will notice that we use this to define `int`
-and `float`, since `toString` gives us the right result for both of
-those types.
-The only difference is, those versions have more restrictive type
+Eagle-eyed readers of the source will notice that we use this same
+function to define `int` and `float`, since `toString` gives us the
+right result for both of those types.
+
+The sole difference is, `int` and `float` have more restrictive type
 signatures.
 -}
 any : Format r (a -> r)
