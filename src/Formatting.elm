@@ -219,9 +219,9 @@ float =
 
 For example:
 
-    print (pad 10 '_' string) "KRIS"
+    print (pad 10 '-' string) "KRIS"
 
-    --> "___KRIS___"
+    --> "---KRIS---"
 
 -}
 pad : Int -> Char -> Format r a -> Format r a
@@ -247,9 +247,9 @@ padLeft n char =
 
 For example:
 
-    print (padRight 10 '_' int) 789
+    print (padRight 10 '.' int) 789
 
-    --> "789_______"
+    --> "789......."
 
 -}
 padRight : Int -> Char -> Format r a -> Format r a
