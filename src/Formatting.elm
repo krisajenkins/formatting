@@ -226,7 +226,7 @@ For example:
 -}
 pad : Int -> Char -> Format r a -> Format r a
 pad n char =
-    map (String.pad n char)
+    map <| String.pad n char
 
 
 {-| `String.padLeft` lifted into the world of Formatters.
@@ -240,7 +240,7 @@ For example:
 -}
 padLeft : Int -> Char -> Format r a -> Format r a
 padLeft n char =
-    map (String.padLeft n char)
+    map <| String.padLeft n char
 
 
 {-| `String.padRight` lifted into the world of Formatters.
@@ -254,4 +254,4 @@ For example:
 -}
 padRight : Int -> Char -> Format r a -> Format r a
 padRight n char =
-    map (String.padRight n char)
+    map <| String.padRight n char
