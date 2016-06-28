@@ -32,7 +32,20 @@ Example:
 
     --> "Hello Kris!"
 
-@docs Format, (<>), map, premap, print, html, s, string, int, float, any, pad, padLeft, padRight
+@docs Format
+@docs (<>)
+@docs map
+@docs premap
+@docs print
+@docs html
+@docs s
+@docs string
+@docs int
+@docs float
+@docs any
+@docs pad
+@docs padLeft
+@docs padRight
 -}
 
 import Html exposing (Html)
