@@ -11,7 +11,7 @@ tests =
         [ basicTests
         , mapTests
         , premapTests
-        , convenienceTests
+        , paddingTests
         ]
 
 
@@ -65,8 +65,8 @@ premapTests =
             |> ElmTest.suite "premap"
 
 
-convenienceTests : Test
-convenienceTests =
+paddingTests : Test
+paddingTests =
     [ assertEqual "___1.72___" (print (pad 10 '_' float) 1.72)
     , assertEqual "______1.72" (print (padLeft 10 '_' float) 1.72)
     , assertEqual "1.72______" (print (padRight 10 '_' float) 1.72)
@@ -75,4 +75,4 @@ convenienceTests =
     , assertEqual "1.7234567891" (print (padRight 10 '.' float) 1.7234567891)
     ]
         |> List.map defaultTest
-        |> ElmTest.suite "premap"
+        |> ElmTest.suite "padding"
