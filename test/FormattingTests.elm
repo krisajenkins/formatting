@@ -13,6 +13,7 @@ tests =
         , premapTests
         , paddingTests
         , precisionTests
+        , instanceTests
         ]
 
 
@@ -93,3 +94,13 @@ precisionTests =
         ]
             |> List.map check
             |> ElmTest.suite "precision"
+
+
+instanceTests : Test
+instanceTests =
+    ElmTest.suite "Tests for specific uses."
+        [ defaultTest
+            <| assertEqual "Price:  12345.43"
+            <| print (s "Price:" <> (dp 2 <| padLeft 10 ' ' <| float))
+                12345.4321
+        ]
