@@ -12,6 +12,7 @@ tests =
         , mapTests
         , premapTests
         , paddingTests
+        , precisionTests
         ]
 
 
@@ -76,3 +77,19 @@ paddingTests =
     ]
         |> List.map defaultTest
         |> ElmTest.suite "padding"
+
+
+precisionTests : Test
+precisionTests =
+    let
+        check ( expected, formatter ) =
+            defaultTest
+                <| assertEqual expected
+                    (print formatter 1234.56789)
+    in
+        [ ( "1234.56789", float )
+        , ( "1234.57", dp 2 float )
+        , ( "1235", dp 0 float )
+        ]
+            |> List.map check
+            |> ElmTest.suite "precision"

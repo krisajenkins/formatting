@@ -14,6 +14,7 @@ module Formatting
         , pad
         , padLeft
         , padRight
+        , dp
         )
 
 {-| A type-safe string formatting library. It fulfils the need for
@@ -46,10 +47,12 @@ Example:
 @docs pad
 @docs padLeft
 @docs padRight
+@docs dp
 -}
 
 import Html exposing (Html)
 import String
+import Utils
 
 
 ------------------------------------------------------------
@@ -269,3 +272,10 @@ For example:
 padRight : Int -> Char -> Format r a -> Format r a
 padRight n char =
     map <| String.padRight n char
+
+
+{-| Round to `n` decimal places.
+-}
+dp : Int -> Format r (Float -> a) -> Format r (Float -> a)
+dp n =
+    premap <| Utils.roundTo n
