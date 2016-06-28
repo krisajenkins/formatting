@@ -4,3 +4,6 @@ install:
   - elm-package install -y
 script:
   - make
+cache:
+  directories:
+  - node_modules
