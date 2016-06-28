@@ -19,17 +19,17 @@ tests =
 
 basicTests : Test
 basicTests =
-    [ assertEqual "Hello Kris!"
-        (print (s "Hello " <> string <> s "!") "Kris")
-    , assertEqual "We need 5 cats."
-        (print (s "We need " <> int <> s " cats.") 5)
-    , assertEqual "Height: 1.72"
-        (print (s "Height: " <> float) 1.72)
-    , assertEqual "Person: { name = \"Kris\", height = 1.72 }"
-        (print (s "Person: " <> any) { name = "Kris", height = 1.72 })
-    ]
-        |> List.map defaultTest
-        |> ElmTest.suite "Basics"
+    ElmTest.suite "Basics"
+        <| List.map defaultTest
+            [ assertEqual "Hello Kris!"
+                (print (s "Hello " <> string <> s "!") "Kris")
+            , assertEqual "We need 5 cats."
+                (print (s "We need " <> int <> s " cats.") 5)
+            , assertEqual "Height: 1.72"
+                (print (s "Height: " <> float) 1.72)
+            , assertEqual "Person: { name = \"Kris\", height = 1.72 }"
+                (print (s "Person: " <> any) { name = "Kris", height = 1.72 })
+            ]
 
 
 mapTests : Test
@@ -44,12 +44,12 @@ mapTests =
                     (print (map f format) "Hello")
                 )
     in
-        [ ( identity, "Hello!" )
-        , ( toUpper, "HELLO!" )
-        , ( reverse, "!olleH" )
-        ]
-            |> List.map check
-            |> ElmTest.suite "map"
+        ElmTest.suite "map"
+            <| List.map check
+                [ ( identity, "Hello!" )
+                , ( toUpper, "HELLO!" )
+                , ( reverse, "!olleH" )
+                ]
 
 
 premapTests : Test
@@ -60,24 +60,24 @@ premapTests =
             , height = 1.72
             }
     in
-        [ assertEqual "Name: Kris" (print (s "Name: " <> premap .name string) record)
-        , assertEqual "Height: 1.72" (print (s "Height: " <> premap .height float) record)
-        ]
-            |> List.map defaultTest
-            |> ElmTest.suite "premap"
+        ElmTest.suite "premap"
+            <| List.map defaultTest
+                [ assertEqual "Name: Kris" (print (s "Name: " <> premap .name string) record)
+                , assertEqual "Height: 1.72" (print (s "Height: " <> premap .height float) record)
+                ]
 
 
 paddingTests : Test
 paddingTests =
-    [ assertEqual "___1.72___" (print (pad 10 '_' float) 1.72)
-    , assertEqual "______1.72" (print (padLeft 10 '_' float) 1.72)
-    , assertEqual "1.72______" (print (padRight 10 '_' float) 1.72)
-    , assertEqual "1.7234567891" (print (pad 10 '.' float) 1.7234567891)
-    , assertEqual "1.7234567891" (print (padLeft 10 '.' float) 1.7234567891)
-    , assertEqual "1.7234567891" (print (padRight 10 '.' float) 1.7234567891)
-    ]
-        |> List.map defaultTest
-        |> ElmTest.suite "padding"
+    ElmTest.suite "padding"
+        <| List.map defaultTest
+            [ assertEqual "___1.72___" (print (pad 10 '_' float) 1.72)
+            , assertEqual "______1.72" (print (padLeft 10 '_' float) 1.72)
+            , assertEqual "1.72______" (print (padRight 10 '_' float) 1.72)
+            , assertEqual "1.7234567891" (print (pad 10 '.' float) 1.7234567891)
+            , assertEqual "1.7234567891" (print (padLeft 10 '.' float) 1.7234567891)
+            , assertEqual "1.7234567891" (print (padRight 10 '.' float) 1.7234567891)
+            ]
 
 
 precisionTests : Test
@@ -88,12 +88,12 @@ precisionTests =
                 <| assertEqual expected
                     (print formatter 1234.56789)
     in
-        [ ( "1234.56789", float )
-        , ( "1234.57", dp 2 float )
-        , ( "1235", dp 0 float )
-        ]
-            |> List.map check
-            |> ElmTest.suite "precision"
+        ElmTest.suite "precision"
+            <| List.map check
+                [ ( "1234.56789", float )
+                , ( "1234.57", dp 2 float )
+                , ( "1235", dp 0 float )
+                ]
 
 
 instanceTests : Test
