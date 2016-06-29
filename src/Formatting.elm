@@ -1,6 +1,6 @@
 module Formatting
     exposing
-        ( Format
+        ( Format(..)
         , (<>)
         , map
         , premap
