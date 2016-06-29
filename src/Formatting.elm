@@ -15,6 +15,7 @@ module Formatting
         , padLeft
         , padRight
         , dp
+        , roundTo
         )
 
 {-| A type-safe string formatting library. It fulfils the need for
@@ -48,11 +49,11 @@ Example:
 @docs padLeft
 @docs padRight
 @docs dp
+@docs roundTo
 -}
 
 import Html exposing (Html)
 import String
-import Utils
 
 
 ------------------------------------------------------------
@@ -274,8 +275,35 @@ padRight n char =
     map <| String.padRight n char
 
 
-{-| Round to `n` decimal places.
+{-| *DEPRECATED*: Use `roundTo` instead.
 -}
-dp : Int -> Format r (Float -> a) -> Format r (Float -> a)
-dp n =
-    premap <| Utils.roundTo n
+dp : number -> Format a (Float -> a)
+dp =
+    roundTo
+
+
+{-| A float rounded to `n` decimal places.
+-}
+roundTo : number -> Format a (Float -> a)
+roundTo n =
+    Format
+        (\c v ->
+            c
+                (if n == 0 then
+                    toString (round v)
+                 else
+                    let
+                        exp =
+                            10 ^ n
+
+                        intPart =
+                            truncate v
+
+                        fractionalPart =
+                            (abs (round (v * exp))) - (abs (intPart * exp))
+                    in
+                        toString intPart
+                            ++ "."
+                            ++ toString fractionalPart
+                )
+        )

@@ -12,7 +12,7 @@ tests =
         , mapTests
         , premapTests
         , paddingTests
-        , precisionTests
+        , roundToTests
         , instanceTests
         ]
 
@@ -80,19 +80,24 @@ paddingTests =
             ]
 
 
-precisionTests : Test
-precisionTests =
+roundToTests : Test
+roundToTests =
     let
-        check ( expected, formatter ) =
+        check ( expected, formatter, value ) =
             defaultTest
                 <| assertEqual expected
-                    (print formatter 1234.56789)
+                    (print formatter value)
     in
-        ElmTest.suite "precision"
+        ElmTest.suite "roundTo"
             <| List.map check
-                [ ( "1234.56789", float )
-                , ( "1234.57", dp 2 float )
-                , ( "1235", dp 0 float )
+                [ ( "1235", roundTo 0, 1234.56 )
+                , ( "1234.0", roundTo 1, 1234 )
+                , ( "1234.57", roundTo 2, 1234.567 )
+                , ( "1234.567000", roundTo 6, 1234.567 )
+                , ( "-1235", roundTo 0, -1234.56 )
+                , ( "-1234.0", roundTo 1, -1234 )
+                , ( "-1234.57", roundTo 2, -1234.567 )
+                , ( "-1234.567000", roundTo 6, -1234.567 )
                 ]
 
 
@@ -101,6 +106,6 @@ instanceTests =
     ElmTest.suite "Tests for specific uses."
         [ defaultTest
             <| assertEqual "Price:  12345.43"
-            <| print (s "Price:" <> (dp 2 <| padLeft 10 ' ' <| float))
+            <| print (s "Price:" <> (padLeft 10 ' ' <| roundTo 2))
                 12345.4321
         ]
