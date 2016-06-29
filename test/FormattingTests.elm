@@ -7,7 +7,7 @@ import String exposing (reverse, toUpper)
 
 tests : Test
 tests =
-    ElmTest.suite "State"
+    ElmTest.suite "Formatting"
         [ basicTests
         , mapTests
         , premapTests
