@@ -235,15 +235,18 @@ float =
 ------------------------------------------------------------
 
 
-{-| `wrap` one string with another. For example:
+{-| `wrap` one string with another. It's convenient for building strings
+like `"Invalid key '<keyname>'."  For example:
 
     print (wrap "'" string) "tester"
 
     --> "'tester'"
 -}
 wrap : String -> Format r a -> Format r a
-wrap s =
-    map <| (\x -> s ++ x ++ s)
+wrap wrapping =
+    (s wrapping <> string <> s wrapping)
+        |> print
+        |> map
 
 
 {-| `String.pad` lifted into the world of Formatters.
