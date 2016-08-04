@@ -11,6 +11,7 @@ module Formatting
         , int
         , float
         , any
+        , wrap
         , pad
         , padLeft
         , padRight
@@ -45,6 +46,7 @@ Example:
 @docs int
 @docs float
 @docs any
+@docs wrap
 @docs pad
 @docs padLeft
 @docs padRight
@@ -231,6 +233,17 @@ float =
 ------------------------------------------------------------
 -- Convenience functions.
 ------------------------------------------------------------
+
+
+{-| `wrap` one string with another. For example:
+
+    print (wrap "'" string) "tester"
+
+    --> "'tester'"
+-}
+wrap : String -> Format r a -> Format r a
+wrap s =
+    map <| (\x -> s ++ x ++ s)
 
 
 {-| `String.pad` lifted into the world of Formatters.

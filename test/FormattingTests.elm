@@ -11,6 +11,7 @@ tests =
         [ basicTests
         , mapTests
         , premapTests
+        , wrapTests
         , paddingTests
         , roundToTests
         , instanceTests
@@ -65,6 +66,15 @@ premapTests =
                 [ assertEqual "Name: Kris" (print (s "Name: " <> premap .name string) record)
                 , assertEqual "Height: 1.72" (print (s "Height: " <> premap .height float) record)
                 ]
+
+
+wrapTests : Test
+wrapTests =
+    ElmTest.suite "wrap"
+        <| List.map defaultTest
+            [ assertEqual "This is *great*!" (print (s "This is " <> wrap "*" string <> s "!") "great")
+            , assertEqual "Received '50'" (print (s "Received " <> wrap "'" int) 50)
+            ]
 
 
 paddingTests : Test
