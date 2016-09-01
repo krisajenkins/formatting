@@ -315,12 +315,12 @@ roundTo n =
                         intPart =
                             truncate v
 
-                        fractionalPart : Int
                         fractionalPart =
-                            (abs (round (v * exp))) - (abs (intPart * exp))
+                            abs (round (v * exp)) - abs (intPart * exp)
+
+                        finalFormat =
+                            int <> s "." <> padRight n '0' int
                     in
-                        toString intPart
-                            ++ "."
-                            ++ print (padRight n '0' (s (toString fractionalPart)))
+                        print finalFormat intPart fractionalPart
                 )
         )
