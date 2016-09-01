@@ -315,11 +315,12 @@ roundTo n =
                         intPart =
                             truncate v
 
+                        fractionalPart : Int
                         fractionalPart =
                             (abs (round (v * exp))) - (abs (intPart * exp))
                     in
                         toString intPart
                             ++ "."
-                            ++ toString fractionalPart
+                            ++ print (padRight n '0' (s (toString fractionalPart)))
                 )
         )
