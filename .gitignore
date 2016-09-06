@@ -1,4 +1,5 @@
 /.shake
 /dist
 /elm-stuff
+/test/elm-stuff
 /tests.js
