@@ -17,6 +17,7 @@ module Formatting
         , padRight
         , dp
         , roundTo
+        , uriFragment
         )
 
 {-| A type-safe string formatting library. It fulfils the need for
@@ -52,9 +53,11 @@ Example:
 @docs padRight
 @docs dp
 @docs roundTo
+@docs uriFragment
 -}
 
 import Html exposing (Html)
+import Http
 import String
 
 
@@ -324,3 +327,16 @@ roundTo n =
                         print finalFormat intPart fractionalPart
                 )
         )
+
+
+{-| Format a URI fragment.
+
+For example:
+
+    print uriFragment "this string"
+
+    --> "this%20string"
+-}
+uriFragment : Format r (String -> r)
+uriFragment =
+    premap Http.uriEncode string
