@@ -10,6 +10,7 @@ module Formatting
         , s
         , string
         , int
+        , bool
         , float
         , any
         , wrap
@@ -47,6 +48,7 @@ Example:
 @docs s
 @docs string
 @docs int
+@docs bool
 @docs float
 @docs any
 @docs wrap
@@ -233,6 +235,13 @@ any =
 -}
 int : Format r (Int -> r)
 int =
+    any
+
+
+{-| A placeholder for an `Bool` argument.
+-}
+bool : Format r (Bool -> r)
+bool =
     any
 
 
