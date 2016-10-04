@@ -4,6 +4,7 @@ module Formatting
         , (<>)
         , map
         , premap
+        , apply
         , print
         , html
         , s
@@ -40,6 +41,7 @@ Example:
 @docs (<>)
 @docs map
 @docs premap
+@docs apply
 @docs print
 @docs html
 @docs s
@@ -128,6 +130,15 @@ For example:
 premap : (a -> b) -> Format r (b -> v) -> Format r (a -> v)
 premap f (Format format) =
     Format (\c -> f >> format c)
+
+
+{-| Apply an argument to a Formatter. Useful when you want to supply
+an argument, but don't yet want to convert your formatter to a plain
+ol' function (with `print`).
+-}
+apply : Format r (a -> b -> r) -> a -> Format r (b -> r)
+apply (Format f) v =
+    Format (\c -> f c v)
 
 
 {-| Turn your formatter into a function that's just waiting for its arguments.
