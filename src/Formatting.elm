@@ -266,10 +266,8 @@ like `"Invalid key '<keyname>'."  For example:
     --> "'tester'"
 -}
 wrap : String -> Format r a -> Format r a
-wrap wrapping =
-    (s wrapping <> string <> s wrapping)
-        |> print
-        |> map
+wrap wrapping format =
+    s wrapping <> format <> s wrapping
 
 
 {-| `String.pad` lifted into the world of Formatters.
