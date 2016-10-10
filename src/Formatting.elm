@@ -316,36 +316,34 @@ padRight n char =
 
 {-| *DEPRECATED*: Use `roundTo` instead.
 -}
-dp : number -> Format a (Float -> a)
+dp : Int -> Format a (Float -> a)
 dp =
     roundTo
 
 
 {-| A float rounded to `n` decimal places.
 -}
-roundTo : number -> Format a (Float -> a)
+roundTo : Int -> Format a (Float -> a)
 roundTo n =
     Format
         (\c v ->
             c
-                (if n == 0 then
+                <| if n == 0 then
                     toString (round v)
-                 else
+                   else
                     let
                         exp =
                             10 ^ n
 
-                        intPart =
-                            truncate v
-
-                        fractionalPart =
-                            abs (round (v * exp)) - abs (intPart * exp)
+                        raised =
+                            round (v * toFloat exp)
 
                         finalFormat =
-                            int <> s "." <> padRight n '0' int
+                            int <> s "." <> padLeft n '0' int
                     in
-                        print finalFormat intPart fractionalPart
-                )
+                        print finalFormat
+                            (raised // exp)
+                            (rem (abs raised) exp)
         )
 
 
