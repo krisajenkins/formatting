@@ -84,7 +84,7 @@ type Format r a
 
 compose : Format b a -> Format c b -> Format c a
 compose (Format f) (Format g) =
-    Format (\c -> f <| \strF -> g <| \strG -> c <| strF ++ strG)
+    Format (\callback -> f <| \strF -> g <| \strG -> callback <| strF ++ strG)
 
 
 {-| Compose two formatters together.
@@ -112,7 +112,7 @@ For example:
 -}
 map : (String -> String) -> Format r a -> Format r a
 map f (Format format) =
-    Format (\c -> format <| f >> c)
+    Format (\callback -> format <| f >> callback)
 
 
 {-| Create a new formatter by applying a function to the input of this
@@ -131,7 +131,7 @@ For example:
 -}
 premap : (a -> b) -> Format r (b -> v) -> Format r (a -> v)
 premap f (Format format) =
-    Format (\c -> f >> format c)
+    Format (\callback -> f >> format callback)
 
 
 {-| Apply an argument to a Formatter. Useful when you want to supply
@@ -139,8 +139,8 @@ an argument, but don't yet want to convert your formatter to a plain
 ol' function (with `print`).
 -}
 apply : Format r (a -> b -> r) -> a -> Format r (b -> r)
-apply (Format f) v =
-    Format (\c -> f c v)
+apply (Format f) value =
+    Format (\callback -> f callback value)
 
 
 {-| Turn your formatter into a function that's just waiting for its arguments.
@@ -316,27 +316,27 @@ padRight n char =
 
 {-| *DEPRECATED*: Use `roundTo` instead.
 -}
-dp : Int -> Format a (Float -> a)
+dp : Int -> Format r (Float -> r)
 dp =
     roundTo
 
 
 {-| A float rounded to `n` decimal places.
 -}
-roundTo : Int -> Format a (Float -> a)
+roundTo : Int -> Format r (Float -> r)
 roundTo n =
     Format
-        (\c v ->
-            c
+        (\callback value ->
+            callback
                 <| if n == 0 then
-                    toString (round v)
+                    toString (round value)
                    else
                     let
                         exp =
                             10 ^ n
 
                         raised =
-                            round (v * toFloat exp)
+                            round (value * toFloat exp)
 
                         finalFormat =
                             int <> s "." <> padLeft n '0' int
