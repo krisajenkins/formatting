@@ -123,28 +123,37 @@ Change that into an anonymous function:
 
 ``` elm
 tweetSummary =
-    (\starCount body -> "(" ++ toString starCount ++ ") " ++ body)
+    (\starCount body ->
+        "(" ++ toString starCount ++ ") " ++ body
+    )
 ```
 
 Now add in a `callback` function as the first argument:
 
 ``` elm
 tweetSummary =
-    (\callback starCount body -> "(" ++ toString starCount ++ ") " ++ body)
+    (\callback starCount body ->
+        "(" ++ toString starCount ++ ") " ++ body
+    )
 ```
 
 Pass your function's result to that callback (using `<|` is the easy way):
 
 ``` elm
 tweetSummary =
-    (\callback starCount body -> callback <| "(" ++ toString starCount ++ ") " ++ body)
+    (\callback starCount body ->
+        callback <| "(" ++ toString starCount ++ ") " ++ body
+    )
 ```
 
 Finally, wrap that all up in a `Format` constructor:
 
 ``` elm
 tweetSummary =
-    Format (\callback starCount body -> callback <| "(" ++ toString starCount ++ ") " ++ body)
+    Format
+        (\callback starCount body ->
+            callback <| "(" ++ toString starCount ++ ") " ++ body
+        )
 ```
 
 And you're done. You have a composable formatting function. It's a
