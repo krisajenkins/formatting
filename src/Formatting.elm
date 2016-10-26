@@ -70,13 +70,87 @@ import String
 ------------------------------------------------------------
 
 
-{-| A string formatter. This type holds all the information we need to
+{-| A formatter. This type holds all the information we need to
 create a formatting function, wrapped up in a way that makes it easy
 to compose.
 
 Build one of these up with primitives like `s`, `string` and `int`,
 join them together with `<>`, and when you're done, generate the final
 printing function with `print`.
+
+
+## Creating Custom Formatters
+
+Imagine you have an existing formatting rule you'd like to turn into a formatter:
+
+``` elm
+tweetSummary : Int -> String -> String
+tweetSummary starCount body =
+    "(" ++ toString starCount ++ ") " ++ body
+```
+
+First, wrap the type signature in brackets:
+
+``` elm
+tweetSummary : (Int -> String -> String)
+```
+
+Then change the result type to a variable. (That's where the magic
+begins - the Formatting library gets control of the final result
+type.):
+
+
+``` elm
+tweetSummary : (Int -> String -> r)
+```
+
+Now add `Format r` to the start.
+
+``` elm
+tweetSummary : Format r (Int -> String -> r)
+```
+
+All very mechanical. Now for the function body. Let's recall what it
+looked like at the start:
+
+``` elm
+tweetSummary starCount body =
+    "(" ++ toString starCount ++ ") " ++ body
+```
+
+Change that into an anonymous function:
+
+
+``` elm
+tweetSummary =
+    (\starCount body -> "(" ++ toString starCount ++ ") " ++ body)
+```
+
+Now add in a `callback` function as the first argument:
+
+``` elm
+tweetSummary =
+    (\callback starCount body -> "(" ++ toString starCount ++ ") " ++ body)
+```
+
+Pass your function's result to that callback (using `<|` is the easy way):
+
+``` elm
+tweetSummary =
+    (\callback starCount body -> callback <| "(" ++ toString starCount ++ ") " ++ body)
+```
+
+Finally, wrap that all up in a `Format` constructor:
+
+``` elm
+tweetSummary =
+    Format (\callback starCount body -> callback <| "(" ++ toString starCount ++ ") " ++ body)
+```
+
+And you're done. You have a composable formatting function. It's a
+mechanical process that's probably a bit weird at first, but easy to
+get used to.
+
 -}
 type Format r a
     = Format ((String -> r) -> a)
