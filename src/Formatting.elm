@@ -67,7 +67,7 @@ Build one of these up with primitives like `s`, `string` and `int`,
 join them together with `<>`, and when you're done, generate the final
 printing function with `print`.
 
-# Example
+## Example
 
     import Formatting exposing (..)
 
