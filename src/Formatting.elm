@@ -27,17 +27,6 @@ string-interpolation or a `printf` function, without sacrificing Elm's
 runtime guarantees or requiring any language-level changes. It also
 composes well, to make building up complex formatters easy.
 
-Example:
-
-    import Formatting exposing (..)
-
-    greeting =
-        s "Hello " <> string <> s "!"
-
-    print greeting "Kris"
-
-    --> "Hello Kris!"
-
 @docs Format
 @docs (<>)
 @docs map
@@ -77,6 +66,17 @@ to compose.
 Build one of these up with primitives like `s`, `string` and `int`,
 join them together with `<>`, and when you're done, generate the final
 printing function with `print`.
+
+# Example
+
+    import Formatting exposing (..)
+
+    greeting =
+        s "Hello " <> string <> s "!"
+
+    print greeting "Kris"
+
+    --> "Hello Kris!"
 
 
 ## Creating Custom Formatters
