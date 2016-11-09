@@ -438,4 +438,4 @@ For example:
 -}
 uriFragment : Format r (String -> r)
 uriFragment =
-    premap Http.uriEncode string
+    premap Http.encodeUri string

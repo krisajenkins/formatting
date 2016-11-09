@@ -1,7 +1,7 @@
 module FormattingTests exposing (tests)
 
-import ElmTest exposing (..)
 import Formatting exposing (..)
+import Legacy.ElmTest as ElmTest exposing (..)
 import String exposing (reverse, toUpper)
 
 

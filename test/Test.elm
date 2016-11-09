@@ -5,8 +5,8 @@ module Test exposing (main)
 @docs main
 -}
 
-import ElmTest exposing (..)
 import FormattingTests
+import Legacy.ElmTest exposing (..)
 
 
 tests : Test
@@ -17,6 +17,6 @@ tests =
 
 {-| Run the test suite under node.
 -}
-main : Program Never
+main : Program Never () msg
 main =
     runSuite tests
