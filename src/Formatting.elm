@@ -417,14 +417,21 @@ roundTo n =
                             10 ^ n
 
                         raised =
-                            round (value * toFloat exp)
+                            abs (round (value * toFloat exp))
+
+                        sign =
+                            if value < 0.0 then
+                                "-"
+                            else
+                                ""
 
                         finalFormat =
-                            int <> s "." <> padLeft n '0' int
+                            string <> int <> s "." <> padLeft n '0' int
                     in
                         print finalFormat
+                            sign
                             (raised // exp)
-                            (rem (abs raised) exp)
+                            (rem raised exp)
         )
 
 
