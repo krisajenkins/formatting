@@ -203,13 +203,17 @@ formatter. The dual of `map`.
 
 For example:
 
-    format = s "Height: " <> premap .height float
+``` elm
+format = s "Height: " <> premap .height float
+```
 
 ...produces a formatter that accesses a `.height` record field:
 
-    print format { height: 1.72 }
+```elm
+print format { height: 1.72 }
 
-    --> "Height: 1.72"
+--> "Height: 1.72"
+```
 
 -}
 premap : (a -> b) -> Format r (b -> v) -> Format r (a -> v)
@@ -231,17 +235,21 @@ apply (Format f) value =
 Given this format:
 
 
-    orderFormat =
-        s "FREE: " <> int <> s " x " <> string  <> s "!"
+``` elm
+orderFormat =
+    s "FREE: " <> int <> s " x " <> string  <> s "!"
+```
 
 
 ...we can either use it immediately:
 
 
-    order : String
-    order = print orderFormat 2 "Ice Cream"
+``` elm
+order : String
+order = print orderFormat 2 "Ice Cream"
 
-    --> "FREE: 2 x Ice Cream!"
+--> "FREE: 2 x Ice Cream!"
+```
 
 
 ...or turn it into an ordinary function to be used later:
@@ -271,8 +279,10 @@ node as its final result, instead of a `String`.
 Hint: If you're using any formatters where whitespace is sigificant,
 you might well need one or both of these CSS rules:
 
-    font-family: monospace;
-    white-space: pre;
+``` css
+font-family: monospace;
+white-space: pre;
+```
 -}
 html : Format (Html msg) a -> a
 html (Format format) =
@@ -344,9 +354,11 @@ float =
 {-| `wrap` one string with another. It's convenient for building strings
 like `"Invalid key '<keyname>'."  For example:
 
-    print (wrap "'" string) "tester"
+``` elm
+print (wrap "'" string) "tester"
 
-    --> "'tester'"
+--> "'tester'"
+```
 -}
 wrap : String -> Format r a -> Format r a
 wrap wrapping format =
@@ -357,10 +369,11 @@ wrap wrapping format =
 
 For example:
 
-    print (pad 10 '-' string) "KRIS"
+``` elm
+print (pad 10 '-' string) "KRIS"
 
-    --> "---KRIS---"
-
+--> "---KRIS---"
+```
 -}
 pad : Int -> Char -> Format r a -> Format r a
 pad n char =
@@ -371,9 +384,11 @@ pad n char =
 
 For example:
 
-    print (padLeft 10 '_' float) 1.72
+``` elm
+print (padLeft 10 '_' float) 1.72
 
-    --> "______1.72"
+--> "______1.72"
+```
 
 -}
 padLeft : Int -> Char -> Format r a -> Format r a
@@ -385,10 +400,11 @@ padLeft n char =
 
 For example:
 
-    print (padRight 10 '.' int) 789
+``` elm
+print (padRight 10 '.' int) 789
 
-    --> "789......."
-
+--> "789......."
+```
 -}
 padRight : Int -> Char -> Format r a -> Format r a
 padRight n char =
@@ -439,9 +455,11 @@ roundTo n =
 
 For example:
 
-    print uriFragment "this string"
+``` elm
+print uriFragment "this string"
 
-    --> "this%20string"
+--> "this%20string"
+```
 -}
 uriFragment : Format r (String -> r)
 uriFragment =
