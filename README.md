@@ -156,10 +156,13 @@ name `premap`.
 Thanks to [Folkert de Vries][folkertdev] for splitting the tests out of the main
 published package.
 
+Thanks to [Ian Mackenzie][ianmackenzie] for `roundTo` bugfixes.
+
 [formatting]: http://chrisdone.com/posts/formatting
 [url-parser]: http://package.elm-lang.org/packages/evancz/url-parser/latest
 [glenjamin]: https://github.com/glenjamin
 [folkertdev]: https://github.com/folkertdev
+[ianmackenzie]: https://github.com/ianmackenzie
 
 ## License
 
