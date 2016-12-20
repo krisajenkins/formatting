@@ -4,6 +4,7 @@ module Formatting
         , (<>)
         , map
         , premap
+        , toFormatter
         , apply
         , print
         , html
@@ -31,6 +32,7 @@ composes well, to make building up complex formatters easy.
 @docs (<>)
 @docs map
 @docs premap
+@docs toFormatter
 @docs apply
 @docs print
 @docs html
@@ -221,6 +223,13 @@ premap f (Format format) =
     Format (\callback -> f >> format callback)
 
 
+{-| Convert an ordinary 'stringifying' function into a Formatter.
+-}
+toFormatter : (a -> String) -> Format r (a -> r)
+toFormatter f =
+    Format (\callback -> f >> callback)
+
+
 {-| Apply an argument to a Formatter. Useful when you want to supply
 an argument, but don't yet want to convert your formatter to a plain
 ol' function (with `print`).
@@ -321,7 +330,7 @@ signatures.
 -}
 any : Format r (a -> r)
 any =
-    Format (\c -> c << toString)
+    toFormatter toString
 
 
 {-| A placeholder for an `Int` argument.
