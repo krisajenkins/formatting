@@ -442,10 +442,10 @@ roundTo : Int -> Format r (Float -> r)
 roundTo n =
     Format
         (\callback value ->
-            callback
-                <| if n == 0 then
+            callback <|
+                if n == 0 then
                     toString (round value)
-                   else
+                else
                     let
                         exp =
                             10 ^ n

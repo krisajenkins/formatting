@@ -20,8 +20,8 @@ tests =
 
 basicTests : Test
 basicTests =
-    ElmTest.suite "Basics"
-        <| List.map defaultTest
+    ElmTest.suite "Basics" <|
+        List.map defaultTest
             [ assertEqual "Hello Kris!"
                 (print (s "Hello " <> string <> s "!") "Kris")
             , assertEqual "We need 5 cats."
@@ -45,8 +45,8 @@ mapTests =
                     (print (map f format) "Hello")
                 )
     in
-        ElmTest.suite "map"
-            <| List.map check
+        ElmTest.suite "map" <|
+            List.map check
                 [ ( identity, "Hello!" )
                 , ( toUpper, "HELLO!" )
                 , ( reverse, "!olleH" )
@@ -61,8 +61,8 @@ premapTests =
             , height = 1.72
             }
     in
-        ElmTest.suite "premap"
-            <| List.map defaultTest
+        ElmTest.suite "premap" <|
+            List.map defaultTest
                 [ assertEqual "Name: Kris" (print (s "Name: " <> premap .name string) record)
                 , assertEqual "Height: 1.72" (print (s "Height: " <> premap .height float) record)
                 ]
@@ -70,8 +70,8 @@ premapTests =
 
 wrapTests : Test
 wrapTests =
-    ElmTest.suite "wrap"
-        <| List.map defaultTest
+    ElmTest.suite "wrap" <|
+        List.map defaultTest
             [ assertEqual "This is *great*!" (print (s "This is " <> wrap "*" string <> s "!") "great")
             , assertEqual "Received '50'" (print (s "Received " <> wrap "'" int) 50)
             ]
@@ -79,8 +79,8 @@ wrapTests =
 
 paddingTests : Test
 paddingTests =
-    ElmTest.suite "padding"
-        <| List.map defaultTest
+    ElmTest.suite "padding" <|
+        List.map defaultTest
             [ assertEqual "___1.72___" (print (pad 10 '_' float) 1.72)
             , assertEqual "______1.72" (print (padLeft 10 '_' float) 1.72)
             , assertEqual "1.72______" (print (padRight 10 '_' float) 1.72)
@@ -94,12 +94,12 @@ roundToTests : Test
 roundToTests =
     let
         check ( expected, formatter, value ) =
-            defaultTest
-                <| assertEqual expected
+            defaultTest <|
+                assertEqual expected
                     (print formatter value)
     in
-        ElmTest.suite "roundTo"
-            <| List.map check
+        ElmTest.suite "roundTo" <|
+            List.map check
                 [ ( "1235", roundTo 0, 1234.56 )
                 , ( "1234.0", roundTo 1, 1234 )
                 , ( "1234.00", roundTo 2, 1234.0 )
@@ -119,7 +119,7 @@ roundToTests =
                 , ( "0.12", roundTo 2, 0.123 )
                 , ( "-0.12", roundTo 2, -0.123 )
                 , ( "0.00", roundTo 2, 0 )
-                , ( "0.00", roundTo 2, -0 )
+                , ( "0.00", roundTo 2, 0 )
                 , ( "-0.46", roundTo 2, -0.46 )
                 , ( "-0.99", roundTo 2, -0.99 )
                 , ( "-1.46", roundTo 2, -1.46 )
@@ -132,8 +132,8 @@ roundToTests =
 instanceTests : Test
 instanceTests =
     ElmTest.suite "Tests for specific uses."
-        [ defaultTest
-            <| assertEqual "Price:  12345.43"
-            <| print (s "Price:" <> (padLeft 10 ' ' <| roundTo 2))
-                12345.4321
+        [ defaultTest <|
+            assertEqual "Price:  12345.43" <|
+                print (s "Price:" <> (padLeft 10 ' ' <| roundTo 2))
+                    12345.4321
         ]
