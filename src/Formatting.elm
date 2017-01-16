@@ -13,6 +13,7 @@ module Formatting
         , int
         , bool
         , float
+        , number
         , any
         , wrap
         , pad
@@ -41,6 +42,7 @@ composes well, to make building up complex formatters easy.
 @docs int
 @docs bool
 @docs float
+@docs number
 @docs any
 @docs wrap
 @docs pad
@@ -351,6 +353,13 @@ bool =
 -}
 float : Format r (Float -> r)
 float =
+    any
+
+
+{-| A placeholder for a `Number` argument.
+-}
+number : Format r (number -> r)
+number =
     any
 
 
